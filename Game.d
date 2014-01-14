@@ -1,27 +1,31 @@
 
 
+import std.stdio;
 import std.file;
 import std.string;
 import std.conv;
+import std.process;
 import INIReader;
 
 class Game
 {
 public:
-	this(string sDirectory)
+	this(in string sDirectory)
 	{
-		if(!exists(sDirectory))throw new Exception("Directory "~sDirectory~" does not exists");
-		if(!exists(sDirectory~"/start.sh"))throw new Exception("File "~sDirectory~"/start.sh does not exists");
-		if(!exists(sDirectory~"/game.ini"))throw new Exception("File "~sDirectory~"/game.ini does not exists");
-		if(!exists(sDirectory~"/description.txt"))throw new Exception("File "~sDirectory~"/description.txt does not exists");
+		m_sDirectory = sDirectory;
+
+		if(!exists(m_sDirectory))throw new Exception("Directory "~m_sDirectory~" does not exists");
+		if(!exists(m_sDirectory~"/start.sh"))throw new Exception("File "~m_sDirectory~"/start.sh does not exists");
+		if(!exists(m_sDirectory~"/game.ini"))throw new Exception("File "~m_sDirectory~"/game.ini does not exists");
+		if(!exists(m_sDirectory~"/description.txt"))throw new Exception("File "~m_sDirectory~"/description.txt does not exists");
 
 
-		INIReader ini = new INIReader(sDirectory~"/game.ini");
+		INIReader ini = new INIReader(m_sDirectory~"/game.ini");
 		m_sName = ini.Get("game", "name");
 		m_bSavesEnabled = to!bool(ini.Get("game", "savesenabled"));
 		if(m_bSavesEnabled)
 		{
-			if(!exists(sDirectory~"/linksave.sh"))throw new Exception("File "~sDirectory~"/linksave.sh does not exists");
+			if(!exists(m_sDirectory~"/linksaves.sh"))throw new Exception("File "~m_sDirectory~"/linksaves.sh does not exists");
 		}
 
 		m_sGameType = ini.Get("game", "gametype");
@@ -29,16 +33,23 @@ public:
 
 	void Start()
 	{
-
+		system(m_sDirectory~"/start.sh");
 	}
 
-	void LinkSaves(in string account)
+	/**
+	@brief Create symlinks to use the account's saves
+	**/
+	void LinkSaves(in string sAccount)
 	{
-
+		system(m_sDirectory~"/linksaves.sh link "~sAccount);
 	}
+
+	/**
+	@brief Deletes the link to the account saves
+	**/
 	void UnlinkSaves()
 	{
-
+		system(m_sDirectory~"/linksaves.sh unlink");
 	}
 
 	string GetName()
@@ -52,6 +63,17 @@ public:
 	string GetDescription()
 	{
 		return "";
+	}
+
+	/**
+	@brief Compare the game names
+	**/
+	override int opCmp(Object o)
+	{
+		Game g = cast(Game) o;
+		if(this.m_sName>g.m_sName)return 1;
+		else if(this.m_sName<g.m_sName)return -1;
+		return 0;
 	}
 
 

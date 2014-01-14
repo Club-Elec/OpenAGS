@@ -7,14 +7,28 @@ class GameList
 public:
 	this(string sGamesDir)
 	{
-
 		foreach(ref DirEntry dir ; dirEntries(sGamesDir, SpanMode.shallow))
 		{
 			if(dir.isDir())
 			{
-				m_games ~= new Game(dir);
+				try
+				{
+					m_games ~= new Game(dir);
+				}
+				catch(Exception e)
+				{
+					writeln("/!\\ Warning: Ignoring folder "~dir.name~" because: ",e);
+				}
+
 			}
 		}
+
+		m_games.sort;
+	}
+
+	ref Game[] GetGames()
+	{
+		return m_games;
 	}
 
 	void Print()
