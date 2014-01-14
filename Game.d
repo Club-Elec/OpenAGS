@@ -12,8 +12,8 @@ public:
 	{
 		if(!exists(sDirectory))throw new Exception("Directory "~sDirectory~" does not exists");
 		if(!exists(sDirectory~"/start.sh"))throw new Exception("File "~sDirectory~"/start.sh does not exists");
-		if(!exists(sDirectory~"/game.ini"))throw new Exception("File "~sDirectory~"/start.sh does not exists");
-		if(!exists(sDirectory~"/start.sh"))throw new Exception("File "~sDirectory~"/start.sh does not exists");
+		if(!exists(sDirectory~"/game.ini"))throw new Exception("File "~sDirectory~"/game.ini does not exists");
+		if(!exists(sDirectory~"/description.txt"))throw new Exception("File "~sDirectory~"/description.txt does not exists");
 
 
 		INIReader ini = new INIReader(sDirectory~"/game.ini");
@@ -39,6 +39,19 @@ public:
 	void UnlinkSaves()
 	{
 
+	}
+
+	string GetName()
+	{
+		return m_sName;
+	}
+	string GetGameType()
+	{
+		return m_sGameType;
+	}
+	string GetDescription()
+	{
+		return "";
 	}
 
 

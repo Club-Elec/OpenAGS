@@ -4,10 +4,11 @@ import std.stdio;
 import std.file;
 import std.string;
 
-import Game;
+import GameList;
 
 int main(string[] args)
 {
-	Game g = new Game("./game");
+	GameList g = new GameList("./games");
+	g.Print();
 	return 0;
 }
