@@ -26,6 +26,7 @@
 				</Compiler>
 			</Target>
 		</Build>
+		<Unit filename="./GameList.d" />
 		<Unit filename="Game.d" />
 		<Unit filename="INIReader.d" />
 		<Unit filename="hello.d" />
