@@ -4,6 +4,6 @@
 	"copyright": "Copyright © 2014, crom",
 	"authors": ["crom"],
 	"dependencies": {
-		"gtk-d:gtkd": "~master"
+		"derelict-sfml2": "~master"
 	}
 }
