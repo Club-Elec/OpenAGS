@@ -1,3 +1,6 @@
 .dub/
 *.a
 openags
+
+games/*/gamedir/
+games/*/src/
