@@ -1,5 +1,3 @@
-*.depend
-*.layout
-bin/
-obj/
-
+.dub/
+*.a
+openags

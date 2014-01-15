@@ -1,0 +1,9 @@
+{
+	"name": "openags",
+	"description": "A minimal D application.",
+	"copyright": "Copyright © 2014, crom",
+	"authors": ["crom"],
+	"dependencies": {
+		"gtk-d": "~master"
+	}
+}

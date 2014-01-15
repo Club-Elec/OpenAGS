@@ -33,7 +33,7 @@ public:
 
 	void Start()
 	{
-		system(m_sDirectory~"/start.sh");
+		system("cd "~m_sDirectory~" && "~"./start.sh");
 	}
 
 	/**
