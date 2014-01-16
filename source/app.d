@@ -12,7 +12,7 @@ int main(string[] args)
 	GameList g = new GameList("./games");
 	g.Print();
 
-	//g.GetGames()[0].Start();
+	g.GetGames()[0].Start();
 
 	//Test if user is valid
 	GameDB db = new GameDB();
@@ -26,7 +26,6 @@ int main(string[] args)
 	if(db.removeUser(username)){
 		writeln("User removed successfully !");
 	}
-
 
 	//link user saves
 	g.GetGames()[0].LinkSaves(username);
