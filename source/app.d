@@ -10,8 +10,6 @@ import Gui;
 
 int main(string[] args)
 {
-	GameList g = new GameList("./games");
-	g.Print();
 
 	//Test if user is valid
 	GameDB db = new GameDB();
@@ -25,7 +23,7 @@ int main(string[] args)
 	if(db.removeUser(username)){
 		writeln("User removed successfully !");
 	}
-	
+
     Gui gui = new Gui;
     gui.RenderLoop();
 

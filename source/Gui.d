@@ -1,7 +1,8 @@
 
 import dsfml.window;
 import dsfml.graphics;
-//import View;
+import View;
+import Home;
 
 class Gui {
 	this() {
@@ -14,7 +15,11 @@ class Gui {
 	    //m_sprBackground.setScale(Vector2f(10,10));
 	    //m_sprBackground.textureRect(IntRect(0, 0,700,500));
 
+	    //Create Views
+	    m_viewHome = new Home;
+
         //Set m_currView as home screen
+        m_currView = m_viewHome;
 	}
 
 
@@ -39,7 +44,7 @@ class Gui {
             //Render background
             win.draw(m_sprBackground);
 
-            //m_currView.Render();
+            m_currView.Render(win);
 
             win.display();
 
@@ -50,6 +55,8 @@ class Gui {
 private:
 	RenderWindow win;
 	Sprite m_sprBackground;
+
 	View m_currView;
+	Home m_viewHome;
 
 }

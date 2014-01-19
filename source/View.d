@@ -1,8 +1,9 @@
-import Event;
+import AGSEvent;
+import dsfml.graphics;
 
 interface View
 {
-    void Render();
+    void Render(ref RenderWindow win);
 
-    void OnEvent(in Event e);
+    void OnEvent(in AGSEvent e);
 }
