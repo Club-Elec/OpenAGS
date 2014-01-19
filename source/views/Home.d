@@ -5,6 +5,7 @@ import AGSEvent;
 import View;
 import dsfml.graphics;
 import GameList;
+import ButtonsLayout;
 
 class Home : View {
 	this() {
@@ -17,6 +18,11 @@ class Home : View {
 		m_gamename = new Text(to!dstring(m_games[m_nGameIndex].GetName()), m_font, 60);
 		m_gamename.setColor(Color(0,0,0));
 		m_gamename.position(Vector2f(70,20));
+
+		m_blPlay = new ButtonsLayout(
+			AGSEvent.AGSEvent.ButA
+			, "Jouer");
+		m_blPlay.position(Vector2f(800/2,600-100));
 	}
 
 	override void OnEvent(in AGSEvent e)
@@ -35,7 +41,7 @@ class Home : View {
 
 			m_gamename.setString(to!dstring(m_games[m_nGameIndex].GetName()));
 		}
-		else if(e == AGSEvent.AGSEvent.ButStart)
+		else if(e == AGSEvent.AGSEvent.ButA)
 		{
 			m_games[m_nGameIndex].Start();
 		}
@@ -44,11 +50,14 @@ class Home : View {
 	override void Render(ref RenderWindow win)
 	{
 		win.draw(m_gamename);
+		win.draw(m_blPlay);
+
 	}
 
 private:
 	Font m_font;
 	Text m_gamename;
+	ButtonsLayout m_blPlay;
 
 	GameList m_gl;
 	Game[] m_games;
