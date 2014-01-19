@@ -3,8 +3,9 @@
 	"description": "A minimal D application.",
 	"copyright": "Copyright © 2014, crom",
 	"authors": ["crom"],
+	"lflags" : ["-L/root/DSFML"],
 	"dependencies": {
-		"derelict-sfml2": "~master",
+		"dsfml:graphics": "~master",
 		"dpq2": "~master"
 	}
 }
