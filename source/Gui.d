@@ -1,8 +1,12 @@
+import std.stdio;
+import std.conv;
 
 import dsfml.window;
 import dsfml.graphics;
 import View;
 import Home;
+import INIReader;
+import AGSEvent;
 
 class Gui {
 	this() {
@@ -20,6 +24,24 @@ class Gui {
 
         //Set m_currView as home screen
         m_currView = m_viewHome;
+
+        INIReader ini = new INIReader("./bindings.ini");
+        foreach(player ; ["Player1","Player2"])
+        {
+	        m_bindings[to!int(ini.Get(player, "up"))] = AGSEvent.AGSEvent.JoyUp;
+	        m_bindings[to!int(ini.Get(player, "down"))] = AGSEvent.AGSEvent.JoyDown;
+	        m_bindings[to!int(ini.Get(player, "left"))] = AGSEvent.AGSEvent.JoyLeft;
+	        m_bindings[to!int(ini.Get(player, "right"))] = AGSEvent.AGSEvent.JoyRight;
+	        m_bindings[to!int(ini.Get(player, "A"))] = AGSEvent.AGSEvent.ButA;
+	        m_bindings[to!int(ini.Get(player, "B"))] = AGSEvent.AGSEvent.ButB;
+	        m_bindings[to!int(ini.Get(player, "C"))] = AGSEvent.AGSEvent.ButC;
+	        m_bindings[to!int(ini.Get(player, "D"))] = AGSEvent.AGSEvent.ButD;
+	        m_bindings[to!int(ini.Get(player, "E"))] = AGSEvent.AGSEvent.ButE;
+	        m_bindings[to!int(ini.Get(player, "F"))] = AGSEvent.AGSEvent.ButF;
+        }
+        m_bindings[to!int(ini.Get("Common", "start"))] = AGSEvent.AGSEvent.ButStart;
+        m_bindings[to!int(ini.Get("Common", "stop"))] = AGSEvent.AGSEvent.ButStop;
+
 	}
 
 
@@ -30,14 +52,15 @@ class Gui {
 	{
 	    while(true)
         {
-//            Event event;
-//            while(win.pollEvent(event))
-//            {
-//                if(event.type == event.EventType.Closed)
-//                {
-//                    //do nothing
-//                }
-//            }
+            Event ev;
+            while(win.pollEvent(ev))
+            {
+                if(ev.type == ev.EventType.KeyPressed)
+                {
+                	if(ev.key.code in m_bindings)
+                    	m_currView.OnEvent(m_bindings[ev.key.code]);
+                }
+            }
 
             win.clear();
 
@@ -58,5 +81,7 @@ private:
 
 	View m_currView;
 	Home m_viewHome;
+
+	AGSEvent[int] m_bindings;
 
 }

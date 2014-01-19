@@ -1,3 +1,4 @@
+import std.stdio;
 
 import AGSEvent;
 import View;
@@ -19,6 +20,7 @@ class Home : View {
 
 	override void OnEvent(in AGSEvent e)
 	{
+		writeln("Event received: ",e);
 		//if(e == AGSEvent.JoyUp)
 		//{
 		//	m_nGameIndex--;
