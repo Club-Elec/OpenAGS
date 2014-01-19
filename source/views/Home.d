@@ -17,7 +17,8 @@ class Home : View {
 		m_font.loadFromFile("res/title.ttf");
 		m_gamename = new Text(to!dstring(m_games[m_nGameIndex].GetName()), m_font, 60);
 		m_gamename.setColor(Color(0,0,0));
-		m_gamename.position(Vector2f(70,20));
+		m_gamename.origin(Vector2f(m_gamename.getLocalBounds().width/2., m_gamename.getLocalBounds().height/2.));
+		m_gamename.position(Vector2f(800/2,50));
 
 		m_blPlay = new ButtonsLayout(
 			AGSEvent.AGSEvent.ButA
@@ -33,6 +34,7 @@ class Home : View {
 				m_nGameIndex--;
 
 			m_gamename.setString(to!dstring(m_games[m_nGameIndex].GetName()));
+			m_gamename.origin(Vector2f(m_gamename.getLocalBounds().width/2, m_gamename.getLocalBounds().height/2));
 		}
 		else if(e == AGSEvent.AGSEvent.JoyDown)
 		{
@@ -40,6 +42,7 @@ class Home : View {
 				m_nGameIndex++;
 
 			m_gamename.setString(to!dstring(m_games[m_nGameIndex].GetName()));
+			m_gamename.origin(Vector2f(m_gamename.getLocalBounds().width/2, m_gamename.getLocalBounds().height/2));
 		}
 		else if(e == AGSEvent.AGSEvent.ButA)
 		{

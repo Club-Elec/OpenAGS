@@ -37,7 +37,7 @@ class ButtonsLayout : Drawable,Transformable {
 
 		m_txt = new Text(to!dstring(sText), m_font, 32);
 		m_txt.setColor(Color(255,255,255));
-		m_txt.origin(Vector2f(m_txt.getLocalBounds().width/2., m_txt.getLocalBounds().height/2.));
+		m_txt.origin(Vector2f(m_txt.getLocalBounds().width/2, m_txt.getLocalBounds().height/2));
 		m_txt.position(Vector2f(65,46));
 
 		origin(Vector2f(65,51));
