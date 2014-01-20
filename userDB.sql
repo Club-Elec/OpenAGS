@@ -1,6 +1,7 @@
 /* CREATE DATABASE */
-TODO : CREATE
-TODO : use 
+CREATE DATABASE openags;
+
+\c openags
 
 
 /* CREATE TABLE */
