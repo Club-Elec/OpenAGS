@@ -31,6 +31,8 @@ public:
 		m_sDescription = readText(m_sDirectory~"/description.txt");
 
 		m_sGameType = ini.Get("game", "gametype");
+
+		m_sPlayers = ini.Get("game", "players");
 	}
 
 	void Start()
@@ -43,7 +45,7 @@ public:
 	**/
 	void LinkSaves(in string sAccount)
 	{
-		system(m_sDirectory~"/linksaves.sh link "~sAccount);
+		system(m_sDirectory~"/linksaves.sh "~sAccount);
 	}
 
 	/**
@@ -51,20 +53,24 @@ public:
 	**/
 	void UnlinkSaves()
 	{
-		system(m_sDirectory~"/linksaves.sh unlink");
+		system(m_sDirectory~"/linksaves.sh public");
 	}
 
-	string GetName()
+	const string GetName()const
 	{
 		return m_sName;
 	}
-	string GetGameType()
+	const string GetGameType()const
 	{
 		return m_sGameType;
 	}
 	const string GetDescription() const
 	{
 		return m_sDescription;
+	}
+	const string GetPlayers() const
+	{
+		return m_sPlayers;
 	}
 
 	/**
@@ -84,6 +90,7 @@ private:
 
 	string m_sName;
 	string m_sDescription;
+	string m_sPlayers;
 	bool m_bSavesEnabled;
 	string m_sGameType;
 }

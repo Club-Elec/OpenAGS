@@ -23,14 +23,14 @@ class Home : View {
 
 		m_sprArrow[0] = new Sprite(m_texArrow);
 		m_sprArrow[0].origin(Vector2f(20,10));
-		m_sprArrow[0].position(Vector2f(viewwidth-25,80));
+		m_sprArrow[0].position(Vector2f(viewwidth-30,80));
 		m_sprArrow[1] = new Sprite(m_texArrow);
 		m_sprArrow[1].origin(Vector2f(20,10));
 		m_sprArrow[1].rotation(180);
-		m_sprArrow[1].position(Vector2f(viewwidth-25,105));
+		m_sprArrow[1].position(Vector2f(viewwidth-30,105));
 
 		m_gamename[0] = new AlignedText(" ", m_fontTitle, 20);
-		m_gamename[0].setColor(Color(0,0,0, 100));
+		m_gamename[0].setColor(Color(0,0,0, 80));
 		m_gamename[0].position(Vector2f(viewwidth/2,15));
 		m_gamename[1] = new AlignedText(" ", m_fontTitle, 30);
 		m_gamename[1].setColor(Color(0,0,0, 160));
@@ -42,10 +42,10 @@ class Home : View {
 		m_gamename[3].setColor(Color(0,0,0, 160));
 		m_gamename[3].position(Vector2f(viewwidth/2,135));
 		m_gamename[4] = new AlignedText(" ", m_fontTitle, 20);
-		m_gamename[4].setColor(Color(0,0,0, 100));
+		m_gamename[4].setColor(Color(0,0,0, 80));
 		m_gamename[4].position(Vector2f(viewwidth/2,165));
 
-		m_gamedesc = new AlignedText(" ", m_fontText, 24);
+		m_gamedesc = new AlignedText(" ", m_fontText, 30);
 		m_gamedesc.setColor(Color(0,0,0));
 		m_gamedesc.position(Vector2f(viewwidth/2,350));
 
@@ -122,10 +122,14 @@ private:
 		else
 			m_gamename[4].setString(" ");
 
-		m_gamedesc.setString(to!dstring(m_games[m_nGameIndex].GetDescription()));
-		m_gamedescbg.size(Vector2f(m_gamedesc.getLocalBounds().width, m_gamedesc.getLocalBounds().height));
+		m_gamedesc.setString(to!dstring(
+			"Type: "~m_games[m_nGameIndex].GetGameType()~"\n"~
+			"Joueurs: "~m_games[m_nGameIndex].GetPlayers()~"\n"~
+			m_games[m_nGameIndex].GetDescription()
+			));
+		m_gamedescbg.size(Vector2f(m_gamedesc.getLocalBounds().width+20, m_gamedesc.getLocalBounds().height+5));
 		m_gamedescbg.origin(m_gamedesc.origin());
-		m_gamedescbg.position(m_gamedesc.position());
+		m_gamedescbg.position(Vector2f(m_gamedesc.position().x-10, m_gamedesc.position().y-10));
 	}
 
 	Font m_fontTitle, m_fontText;

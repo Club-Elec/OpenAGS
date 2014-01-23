@@ -1,1 +1,1 @@
-This is a sample description of the game "LTris"
+Un Tetris tout ce qu'il y a de plus classique

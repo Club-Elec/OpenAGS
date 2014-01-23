@@ -1,1 +1,1 @@
-This is a sample description of the game "OpenHexagon"
+Un jeu de réflexes très rapide
