@@ -24,9 +24,11 @@ public:
 		m_sName = ini.Get("game", "name");
 		m_bSavesEnabled = to!bool(ini.Get("game", "savesenabled"));
 		if(m_bSavesEnabled)
-		{
+		{ 
 			if(!exists(m_sDirectory~"/linksaves.sh"))throw new Exception("File "~m_sDirectory~"/linksaves.sh does not exists");
 		}
+
+		m_sDescription = readText(m_sDirectory~"/description.txt");
 
 		m_sGameType = ini.Get("game", "gametype");
 	}
@@ -60,9 +62,9 @@ public:
 	{
 		return m_sGameType;
 	}
-	string GetDescription()
+	const string GetDescription() const
 	{
-		return "";
+		return m_sDescription;
 	}
 
 	/**
@@ -81,6 +83,7 @@ private:
 	string m_sDirectory;
 
 	string m_sName;
+	string m_sDescription;
 	bool m_bSavesEnabled;
 	string m_sGameType;
 }
