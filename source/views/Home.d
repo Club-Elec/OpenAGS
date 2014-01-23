@@ -23,46 +23,41 @@ class Home : View {
 
 		m_sprArrow[0] = new Sprite(m_texArrow);
 		m_sprArrow[0].origin(Vector2f(20,10));
-		m_sprArrow[0].position(Vector2f(viewwidth-50,70));
+		m_sprArrow[0].position(Vector2f(viewwidth-25,80));
 		m_sprArrow[1] = new Sprite(m_texArrow);
 		m_sprArrow[1].origin(Vector2f(20,10));
 		m_sprArrow[1].rotation(180);
-		m_sprArrow[1].position(Vector2f(viewwidth-50,95));
+		m_sprArrow[1].position(Vector2f(viewwidth-25,105));
 
 		m_gamename[0] = new AlignedText(" ", m_fontTitle, 20);
-		m_gamename[0].setColor(Color(0,0,0, 128));
-		m_gamename[0].alignment(AlignedText.AlignedText.Alignment.right);
-		m_gamename[0].position(Vector2f(viewwidth-25,15));
+		m_gamename[0].setColor(Color(0,0,0, 100));
+		m_gamename[0].position(Vector2f(viewwidth/2,15));
 		m_gamename[1] = new AlignedText(" ", m_fontTitle, 30);
-		m_gamename[1].setColor(Color(0,0,0, 196));
-		m_gamename[1].alignment(AlignedText.AlignedText.Alignment.right);
-		m_gamename[1].position(Vector2f(viewwidth-60,40));
-		m_gamename[2] = new AlignedText(" ", m_fontTitle, 45);
+		m_gamename[1].setColor(Color(0,0,0, 160));
+		m_gamename[1].position(Vector2f(viewwidth/2,40));
+		m_gamename[2] = new AlignedText(" ", m_fontTitle, 60);
 		m_gamename[2].setColor(Color(0,0,0));
-		m_gamename[2].alignment(AlignedText.AlignedText.Alignment.center);
-		m_gamename[2].position(Vector2f(viewwidth/2,75));
+		m_gamename[2].position(Vector2f(viewwidth/2,80));
 		m_gamename[3] = new AlignedText(" ", m_fontTitle, 30);
-		m_gamename[3].setColor(Color(0,0,0, 196));
-		m_gamename[3].alignment(AlignedText.AlignedText.Alignment.right);
-		m_gamename[3].position(Vector2f(viewwidth-60,120));
+		m_gamename[3].setColor(Color(0,0,0, 160));
+		m_gamename[3].position(Vector2f(viewwidth/2,135));
 		m_gamename[4] = new AlignedText(" ", m_fontTitle, 20);
-		m_gamename[4].setColor(Color(0,0,0, 128));
-		m_gamename[4].alignment(AlignedText.AlignedText.Alignment.right);
-		m_gamename[4].position(Vector2f(viewwidth-25,150));
+		m_gamename[4].setColor(Color(0,0,0, 100));
+		m_gamename[4].position(Vector2f(viewwidth/2,165));
 
 		m_gamedesc = new AlignedText(" ", m_fontText, 24);
 		m_gamedesc.setColor(Color(0,0,0));
-		m_gamedesc.position(Vector2f(viewwidth/2,200));
+		m_gamedesc.position(Vector2f(viewwidth/2,350));
 
 		m_gamedescbg = new RectangleShape();
-		m_gamedescbg.fillColor(Color(255,255,255,80));
+		m_gamedescbg.fillColor(Color(255,255,255,150));
 
 
 		UpdateGameNames();	
 
 
 		m_blPlay = new ButtonsLayout(AGSEvent.AGSEvent.ButA, "Jouer");
-		m_blPlay.position(Vector2f(800/2,600-100));
+		m_blPlay.position(Vector2f(viewwidth/2,viewheight-60));
 	}
 
 	override void OnEvent(in AGSEvent e)
