@@ -12,7 +12,7 @@ int main(string[] args)
 {
 
 	//Test if user is valid
-	GameDB db = new GameDB();
+	/*GameDB db = new GameDB();
 	string username="toto", password="titi";
 	if(db.addUser(username, password)){
 		writeln("User successfully created !");
@@ -22,7 +22,7 @@ int main(string[] args)
 	}
 	if(db.removeUser(username)){
 		writeln("User removed successfully !");
-	}
+	}*/
 
     Gui gui = new Gui;
     gui.RenderLoop();
