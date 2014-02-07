@@ -49,8 +49,8 @@ class Home : View {
 		m_gamedesc.setColor(Color(0,0,0));
 		m_gamedesc.position(Vector2f(viewwidth/2,350));
 
-		m_gamedescbg = new RectangleShape();
-		m_gamedescbg.fillColor(Color(255,255,255,150));
+		//m_gamedescbg = new RectangleShape();
+		//m_gamedescbg.fillColor(Color(255,255,255,150));
 
 
 		UpdateGameNames();	
@@ -90,7 +90,7 @@ class Home : View {
 		if(m_nGameIndex<m_games.length-1)
 			win.draw(m_sprArrow[1]);
 
-		win.draw(m_gamedescbg);
+		//win.draw(m_gamedescbg);
 		win.draw(m_gamedesc);
 
 		win.draw(m_blPlay);
@@ -127,15 +127,15 @@ private:
 			"Joueurs: "~m_games[m_nGameIndex].GetPlayers()~"\n"~
 			m_games[m_nGameIndex].GetDescription()
 			));
-		m_gamedescbg.size(Vector2f(m_gamedesc.getLocalBounds().width+20, m_gamedesc.getLocalBounds().height+5));
-		m_gamedescbg.origin(m_gamedesc.origin());
-		m_gamedescbg.position(Vector2f(m_gamedesc.position().x-10, m_gamedesc.position().y-10));
+		//m_gamedescbg.size(Vector2f(m_gamedesc.getLocalBounds().width+20, m_gamedesc.getLocalBounds().height+5));
+		//m_gamedescbg.origin(m_gamedesc.origin());
+		//m_gamedescbg.position(Vector2f(m_gamedesc.position().x-10, m_gamedesc.position().y-10));
 	}
 
 	Font m_fontTitle, m_fontText;
 	AlignedText m_gamename[5];
 	AlignedText m_gamedesc;
-	RectangleShape m_gamedescbg;
+	//RectangleShape m_gamedescbg;
 	ButtonsLayout m_blPlay;
 	Texture m_texArrow;
 	Sprite m_sprArrow[2];

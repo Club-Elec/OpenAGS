@@ -10,7 +10,7 @@ import AGSEvent;
 
 class Gui {
 	this() {
-	    win = new RenderWindow(VideoMode(800,600),"Hello DSFML!",Window.Style.None);
+	    win = new RenderWindow(VideoMode(1024,768),"Hello DSFML!",Window.Style.None);
 	    win.setVerticalSyncEnabled(true);
 
         Texture m_texBackground = new Texture;
