@@ -3,8 +3,8 @@ import dsfml.graphics;
 
 interface View
 {
-	static immutable int viewwidth=800;
-	static immutable int viewheight=600;
+	static immutable int viewwidth=1024;
+	static immutable int viewheight=768;
 
     void Render(ref RenderWindow win);
 
