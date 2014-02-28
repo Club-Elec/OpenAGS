@@ -1,5 +1,6 @@
 import std.stdio;
 import std.conv;
+import core.thread;
 
 import dsfml.window;
 import dsfml.graphics;
@@ -71,7 +72,7 @@ class Gui {
 
             win.display();
 
-
+            Thread.sleep(dur!("msecs")(15));
         }
 	}
 
