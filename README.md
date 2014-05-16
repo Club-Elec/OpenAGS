@@ -208,6 +208,6 @@ On ne peut donc pas utiliser le joystick droit en même temps que le bouton vert
 En ésperant que ce document vous soit utile
 bon courage!
 
-pour tout problème ne pas hésiter contacter Corentin Raoult (promo 2015 ou 2016), 
+pour tout problème ne pas hésiter contacter [Corentin Raoult](https://github.com/corentin-R)(promo 2015 ou 2016), 
 
 ou sinon [Thibaut Charles](https://github.com/CromFr/) et [Thomas Abot](https://github.com/triskell) (promo 2015) et Victor Dorez (promo 2016)
