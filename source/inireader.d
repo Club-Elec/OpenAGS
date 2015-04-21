@@ -1,37 +1,67 @@
+module inireader;
+
 import std.stdio;
 import std.file;
-import std.string;
 import std.regex;
 import std.stream;
+import std.conv;
 
+public import std.string;
 
+/**
+	INI config file reader
+*/
 class INIReader
 {
 public:
-	this(string sPath)
+	this(in string sPath, string[string][string] defValues=null)
 	{
 		m_sPath = sPath;
-		Parse();
+
+		if(defValues !is null)
+			m_Data = defValues.dup;
+
+		if(m_sPath!="")
+			Parse();
 	}
 
-	string GetPath(){return m_sPath;}
-
-	string Get(string sHeader, string sName)
-	{
-		return m_Data[sHeader][sName];
+	@property{
+		string path(){return m_sPath;}
 	}
 
-	void Print()
+	/**
+		Gets the value of the field
+		Throws: if the value could not be retrieved
+		Returns: "" if not found
+	*/
+	T Get(T)(string sHeader, string sName)
 	{
+		if(sHeader in m_Data && sName in m_Data[sHeader])
+			return to!(T)(m_Data[sHeader][sName]);
+		else
+			throw new Exception("Value not found: "~sHeader~"."~sName);
+	}
+
+	void Set(T)(string sHeader, string sName, T value){
+		m_Data[sHeader][sName] = to!string(value);
+	}
+
+	/**
+		Prints the configuration entries, useful for debugging purposes
+	*/
+	override string toString()
+	{
+		string sRet;
 		foreach(string section, entries ; m_Data)
 		{
-			writeln("[",section,"]");
+			sRet ~= "["~section~"]\n";
 
 			foreach(string name, string value ; entries)
 			{
-				writeln("\t",name,"=",value);
+				sRet ~= "\t"~name~"="~value~"\n";
 			}
 		}
+		return sRet;
 	}
 
 private:
@@ -40,7 +70,6 @@ private:
 	void Parse()
 	{
 		Stream file = new BufferedFile(m_sPath);
-
 
 		string sCurrentHeader = "";
 		while(!file.eof())

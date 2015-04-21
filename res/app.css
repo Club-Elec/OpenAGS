@@ -1,0 +1,32 @@
+.mainbg {
+	background-image: url('background.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.pixeltext {
+	font-size: 30px;
+	color: #800;
+	font-family: "Karmatic Arcade";
+}
+
+
+
+.game-title {
+	font-size: 38px;
+	color: #000;
+	font-family: "Karmatic Arcade";
+}
+.game-title-small {
+	font-size: 30px;
+	color: #555;
+	font-family: "Karmatic Arcade";
+}
+
+.game-desc {
+	padding: 20px;
+	font-size: 2em;
+	background-color: rgba(0,0,0,0.6);
+	font-family: "pixelmix";
+
+	color: #FFF;
+}

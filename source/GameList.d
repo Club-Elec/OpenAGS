@@ -1,6 +1,7 @@
 import Game;
 import std.stdio;
 import std.file;
+import std.algorithm;
 
 class GameList
 {
@@ -13,7 +14,7 @@ public:
 			{
 				try
 				{
-					m_games ~= new Game(dir);
+					games ~= new Game(dir);
 				}
 				catch(Exception e)
 				{
@@ -23,22 +24,19 @@ public:
 			}
 		}
 
-		m_games.sort;
+		sort(games);
 	}
 
-	ref Game[] GetGames()
-	{
-		return m_games;
-	}
+	Game[] games;
 
 	void Print()
 	{
-		foreach(ref Game g ; m_games)
+		foreach(ref Game g ; games)
 			writeln("Game: "~g.GetName());
 	}
 
 private:
-	Game[] m_games;
+	
 
 
 }

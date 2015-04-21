@@ -5,7 +5,7 @@ import std.file;
 import std.string;
 import std.conv;
 import std.process;
-import INIReader;
+import inireader;
 
 class Game
 {
@@ -21,8 +21,8 @@ public:
 
 
 		INIReader ini = new INIReader(m_sDirectory~"/game.ini");
-		m_sName = ini.Get("game", "name");
-		m_bSavesEnabled = to!bool(ini.Get("game", "savesenabled"));
+		m_sName = ini.Get!string("game", "name");
+		m_bSavesEnabled = to!bool(ini.Get!string("game", "savesenabled"));
 		if(m_bSavesEnabled)
 		{ 
 			if(!exists(m_sDirectory~"/linksaves.sh"))throw new Exception("File "~m_sDirectory~"/linksaves.sh does not exists");
@@ -30,14 +30,15 @@ public:
 
 		m_sDescription = readText(m_sDirectory~"/description.txt");
 
-		m_sGameType = ini.Get("game", "gametype");
+		m_sGameType = ini.Get!string("game", "gametype");
 
-		m_sPlayers = ini.Get("game", "players");
+		m_sPlayers = ini.Get!string("game", "players");
 	}
 
 	void Start()
 	{
-		system("cd "~m_sDirectory~" && "~"./start.sh");
+		writeln("Starting ",m_sName);
+		executeShell("cd "~m_sDirectory~" && "~"./start.sh");
 	}
 
 	/**
@@ -45,7 +46,7 @@ public:
 	**/
 	void LinkSaves(in string sAccount)
 	{
-		system(m_sDirectory~"/linksaves.sh "~sAccount);
+		executeShell(m_sDirectory~"/linksaves.sh "~sAccount);
 	}
 
 	/**
@@ -53,22 +54,22 @@ public:
 	**/
 	void UnlinkSaves()
 	{
-		system(m_sDirectory~"/linksaves.sh public");
+		executeShell(m_sDirectory~"/linksaves.sh public");
 	}
 
-	const string GetName()const
+	string GetName()const
 	{
 		return m_sName;
 	}
-	const string GetGameType()const
+	string GetGameType()const
 	{
 		return m_sGameType;
 	}
-	const string GetDescription() const
+	string GetDescription() const
 	{
 		return m_sDescription;
 	}
-	const string GetPlayers() const
+	string GetPlayers() const
 	{
 		return m_sPlayers;
 	}

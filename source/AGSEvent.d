@@ -1,3 +1,4 @@
+module AgsEvent;
 
 enum AGSEvent : int
 {
