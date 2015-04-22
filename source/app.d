@@ -38,42 +38,56 @@ int main(string[] args)
 	//Loading bindings
 	AGSEvent[int] bindings;
 	INIReader bindingsini = new INIReader("./bindings.ini");
-    foreach(player ; ["Player1","Player2"])
-    {
-        bindings[bindingsini.Get!int(player, "up")] = AGSEvent.JoyUp;
-        bindings[bindingsini.Get!int(player, "down")] = AGSEvent.JoyDown;
-        bindings[bindingsini.Get!int(player, "left")] = AGSEvent.JoyLeft;
-        bindings[bindingsini.Get!int(player, "right")] = AGSEvent.JoyRight;
-        bindings[bindingsini.Get!int(player, "A")] = AGSEvent.ButA;
-        bindings[bindingsini.Get!int(player, "B")] = AGSEvent.ButB;
-        bindings[bindingsini.Get!int(player, "C")] = AGSEvent.ButC;
-        bindings[bindingsini.Get!int(player, "D")] = AGSEvent.ButD;
-        bindings[bindingsini.Get!int(player, "E")] = AGSEvent.ButE;
-        bindings[bindingsini.Get!int(player, "F")] = AGSEvent.ButF;
-    }
-    bindings[bindingsini.Get!int("Common", "start")] = AGSEvent.ButStart;
-    bindings[bindingsini.Get!int("Common", "stop")] = AGSEvent.ButStop;
+	foreach(player ; ["Player1","Player2"])
+	{
+		bindings[bindingsini.Get!int(player, "up")] = AGSEvent.JoyUp;
+		bindings[bindingsini.Get!int(player, "down")] = AGSEvent.JoyDown;
+		bindings[bindingsini.Get!int(player, "left")] = AGSEvent.JoyLeft;
+		bindings[bindingsini.Get!int(player, "right")] = AGSEvent.JoyRight;
+		bindings[bindingsini.Get!int(player, "A")] = AGSEvent.ButA;
+		bindings[bindingsini.Get!int(player, "B")] = AGSEvent.ButB;
+		bindings[bindingsini.Get!int(player, "C")] = AGSEvent.ButC;
+		bindings[bindingsini.Get!int(player, "D")] = AGSEvent.ButD;
+		bindings[bindingsini.Get!int(player, "E")] = AGSEvent.ButE;
+		bindings[bindingsini.Get!int(player, "F")] = AGSEvent.ButF;
+	}
+	bindings[bindingsini.Get!int("Common", "start")] = AGSEvent.ButStart;
+	bindings[bindingsini.Get!int("Common", "stop")] = AGSEvent.ButStop;
 
-    //Update game info (titles, description)
-    void UpdateGameInfo(){
-    	import gtk.Label;
-    	auto game = gameList.games[gameIndex];
-    	(cast(Label)b.getObject("game")).setText(game.GetName);
-    	(cast(Label)b.getObject("gamePrev")).setText(
-    		gameIndex>0? gameList.games[gameIndex-1].GetName : ""
-    	);
-    	(cast(Label)b.getObject("gameNext")).setText(
-    		gameIndex<gameList.games.length-1? gameList.games[gameIndex+1].GetName : ""
-    	);
-    	(cast(Label)b.getObject("gameDesc")).setText(
-    		"Type: "~game.GetGameType~"\n"~
-    		"Joueurs: "~game.GetPlayers~"\n"~
-    		game.GetDescription
-    	);
-    }
+	//Update game info (titles, description)
+	void UpdateGameInfo(){
+		import gtk.Label;
+		auto game = gameList.games[gameIndex];
+		(cast(Label)b.getObject("game")).setText(game.GetName);
+
+		if(gameIndex>0){
+			(cast(Label)b.getObject("gamePrev")).setText(gameList.games[gameIndex-1].GetName);
+			(cast(Widget)b.getObject("iconGamePrev")).setOpacity(1.0);
+		}
+		else{
+			(cast(Label)b.getObject("gamePrev")).setText(" ");
+			(cast(Widget)b.getObject("iconGamePrev")).setOpacity(0.3);
+		}
+
+		if(gameIndex<gameList.games.length-1){
+			(cast(Label)b.getObject("gameNext")).setText(gameList.games[gameIndex+1].GetName);
+			(cast(Widget)b.getObject("iconGameNext")).setOpacity(1.0);
+		}
+		else{
+			(cast(Label)b.getObject("gameNext")).setText(" ");
+			(cast(Widget)b.getObject("iconGameNext")).setOpacity(0.1);
+		}
+
+		(cast(Label)b.getObject("gameDesc")).setText(
+			"Type: "~game.GetGameType~"\n"~
+			"Joueurs: "~game.GetPlayers~"\n"~
+			game.GetDescription
+		);
+		(cast(Label)b.getObject("gameDesc")).setJustify(GtkJustification.LEFT);
+	}
 	UpdateGameInfo();
 
-    //Handle key press
+	//Handle key press
 	win.addOnKeyPress(delegate(Event e, Widget w){
 		if(e.getEventType == EventType.KEY_PRESS){
 			ushort key;

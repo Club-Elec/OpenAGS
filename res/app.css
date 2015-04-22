@@ -33,3 +33,6 @@
 .fadebg{
 	background-color: rgba(0,0,0,0.7);
 }
+.fade{
+	opacity: 0.5;
+}
