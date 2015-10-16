@@ -2,7 +2,7 @@
 ## club élec ISEN Brest
 
 ### Partie électronique
-La borne se compose d'un PC, d'une TV cathodique, et d'un vieux clavier PS/2 sur lequel ont été soudés les boutons et les joysticks. Le problème d'utiliser une matrice de clavier est sue le nombre d'inputs simultanées est limitées, ce qui fait que si il y a trop de boutons appuyés en même temps les contrôles se bloquent, ce type de problème peut apparaître pour des jeux comme SuperTuxKart. De plus les soudures ne sont pas particulièrement propres, ce qui peut entraîner des courtcircuits de temps à autre.
+La borne se compose d'un PC, d'une TV cathodique, et d'un vieux clavier PS/2 sur lequel ont été soudés les boutons et les joysticks. Le problème d'utiliser une matrice de clavier est que le nombre d'inputs simultanées est limitées, ce qui fait que si il y a trop de boutons appuyés en même temps les contrôles se bloquent, ce type de problème peut apparaître pour des jeux comme SuperTuxKart. De plus les soudures ne sont pas particulièrement propres, ce qui peut entraîner des courtcircuits de temps à autre.
 
 Le PC communique avec la TV grâce à l'ajout d'une arte graphique comportant une sortie S-vidéo. Le problème est que si le pc lâche on est obligé de retrouver ue carte graphique avec une sortie S-vidéo. Pour contrer ce problème il faudrait investir dans un adaptateur vga- vers S-video ou péritel.
 
